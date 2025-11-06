@@ -1,6 +1,7 @@
 package com.example.userservice.dto;
 
 import com.example.userservice.model.Gender;
+import com.example.userservice.model.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
@@ -17,4 +18,5 @@ public class UserDTO {
     private String phone, email, fullname, address;
     private Date birth;
     private Gender gender;
+    private Role role;
 }
