@@ -1,13 +1,16 @@
 package com.example.patientservice.repository;
 
-import com.example.patientservice.dto.PatientDTO;
 import com.example.patientservice.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
+
+@Repository
 public interface PatientRepo extends JpaRepository<Patient,Integer> {
-    Patient findByPatientId(Integer patientId);
-    List<Patient> findByFullName(String fullName);
-    Patient findByUserId(Integer userId);
+    Optional<Patient> findByPatientId(Integer patientId);
+    Optional<List<Patient>> findByFullName(String fullName);
+    Optional<Patient> findByUserId(Integer userId);
 }
