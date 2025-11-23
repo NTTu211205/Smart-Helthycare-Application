@@ -17,7 +17,7 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int doctorId;
-    private int userId;
+    private String userId;
     private int hospitalId;
     private String department;
     private String fullName; // ho ten
