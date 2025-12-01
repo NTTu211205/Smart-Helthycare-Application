@@ -6,6 +6,7 @@ import com.example.appointmentservice.dto.AppointmentResponse;
 import com.example.appointmentservice.model.Appointment;
 import com.example.appointmentservice.model.AppointmentStatus;
 import com.example.appointmentservice.service.AppointmentService;
+import com.example.appointmentservice.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,9 @@ public class AppointmentController {
     
     @Autowired
     private AppointmentService appointmentService;
+
+    @Autowired
+    private EmailService emailService;
     
     // Lấy tất cả appointments
     @GetMapping("/all")
@@ -485,5 +489,49 @@ public class AppointmentController {
             return ResponseEntity.ok(response);
         }
     }
-}
 
+    /**
+     * Endpoint gửi email xác nhận đặt lịch thành công.
+     * FE sẽ gọi user-service để lấy email bệnh nhân, sau đó gọi:
+     * POST /appointments/send-confirmation-email/{appointmentId}?email=abc@gmail.com
+     */
+    @PostMapping("/send-confirmation-email/{appointmentId}")
+    public ResponseEntity<AppointmentResponse> sendConfirmationEmail(
+            @PathVariable int appointmentId,
+            @RequestParam String email) {
+
+        AppointmentResponse response = new AppointmentResponse();
+        try {
+            Optional<Appointment> appointmentOptional = appointmentService.findById(appointmentId);
+            if (appointmentOptional.isEmpty()) {
+                response.setStatus(false);
+                response.setMessage("Appointment not found with ID: " + appointmentId);
+                response.setResult(null);
+                return ResponseEntity.ok(response);
+            }
+
+            Appointment appointment = appointmentOptional.get();
+
+            // Nếu muốn chỉ gửi khi đã CONFIRMED thì bỏ comment đoạn dưới:
+            // if (appointment.getStatus() != AppointmentStatus.CONFIRMED) {
+            //     response.setStatus(false);
+            //     response.setMessage("Appointment must be CONFIRMED before sending confirmation email");
+            //     response.setResult(List.of(appointment));
+            //     return ResponseEntity.ok(response);
+            // }
+
+            emailService.sendAppointmentConfirmationEmail(email, appointment);
+
+            response.setStatus(true);
+            response.setMessage("Confirmation email sent successfully to " + email);
+            response.setResult(List.of(appointment));
+            return ResponseEntity.ok(response);
+
+        } catch (Exception e) {
+            response.setStatus(false);
+            response.setMessage("Failed to send confirmation email: " + e.getMessage());
+            response.setResult(null);
+            return ResponseEntity.ok(response);
+        }
+    }
+}
