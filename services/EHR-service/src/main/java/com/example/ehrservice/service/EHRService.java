@@ -80,7 +80,7 @@ public class EHRService {
             List<EHR.MedicalVisitInfo> visitInfos = visits.stream().map(visit -> {
                 EHR.MedicalVisitInfo visitInfo = new EHR.MedicalVisitInfo();
                 visitInfo.setVisitId(visit.getVisitId());
-                // visitInfo.setDoctorId(visit.getDoctorId());
+                 visitInfo.setDoctorId(visit.getDoctorId());
                 
                 // // Lấy thông tin bác sĩ từ doctor-service (có thể lỗi nhưng vẫn tiếp tục)
                 // try {
