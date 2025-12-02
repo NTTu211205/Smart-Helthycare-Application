@@ -8,18 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-
-@RestController
-@RequestMapping("/patient")
-public class PatientController {
-    @Autowired
-    private PatientService patientService;
-    @GetMapping("/profile/{patientId}")
-    public ResponseEntity<Patient> getPatientById(@PathVariable Integer patientId){
-        return patientService.findByPatientId(patientId).map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
 import com.example.patientservice.dto.PatientRequest;
 import com.example.patientservice.dto.PatientResponse;
 import com.example.patientservice.dto.UpdatePatientRequest;
