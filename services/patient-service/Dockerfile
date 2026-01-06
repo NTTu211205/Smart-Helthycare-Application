@@ -4,8 +4,8 @@ WORKDIR /app
 #COPY pom.xml .
 #COPY src ./src
 
-COPY services/user-service/pom.xml .
-COPY services/user-service/src ./src
+COPY services/patient-service/pom.xml .
+COPY services/patient-service/src ./src
 
 RUN mvn clean package -DskipTests
 
