@@ -21,12 +21,12 @@ public class User {
     private Date birth;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(
-            name = "roles",
-            joinColumns = @JoinColumn(name = "user_id")
-    )
+//    @ElementCollection(fetch = FetchType.EAGER)
+//    @Enumerated(EnumType.STRING)
+//    @CollectionTable(
+//            name = "roles",
+//            joinColumns = @JoinColumn(name = "user_id")
+//    )
     @Column(name = "role")
     private Set<Role> roles;
 }

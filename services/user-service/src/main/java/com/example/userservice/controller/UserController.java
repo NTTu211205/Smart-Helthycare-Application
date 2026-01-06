@@ -27,6 +27,7 @@ public class UserController {
             return ResponseEntity.ok(notFoundResponse);
         }
     }
+
     @GetMapping("/findAllUsers")
     public ResponseEntity<UserListResponse> findAllUsers() {
         UserListResponse response = userService.findAllUsers();
@@ -41,9 +42,10 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<UserResponse> login(@RequestBody LoginRequest loginRequest) {
-        UserResponse response = userService.login(loginRequest);
+        UserResponse response = userService.    login(loginRequest);
         return ResponseEntity.ok(response);
     }
+
     @PutMapping("/update-password") 
     public ResponseEntity<UpdatePasswordResponse> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
         UpdatePasswordResponse response = userService.updatePassword(updatePasswordRequest);
