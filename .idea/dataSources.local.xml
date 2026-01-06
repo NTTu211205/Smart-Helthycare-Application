@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="IU-252.26830.84">
+    <data-source name="patientsdb@localhost" uuid="cb1e5d3b-2c87-48a7-ac63-cea24d28f557">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <user-name>admin</user-name>
+      <schema-mapping />
+    </data-source>
+    <data-source name="usersdb@localhost" uuid="074d4102-d5d3-4e3d-8f1f-70f4d4f2d937">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" />
+      <user-name>root</user-name>
+      <schema-mapping />
+    </data-source>
+  </component>
+</project>

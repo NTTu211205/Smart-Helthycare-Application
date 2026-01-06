@@ -25,9 +25,9 @@ public class PatientService {
     public Optional<Patient> findByPatientId(Integer patientId){
         return patientRepo.findByPatientId(patientId);
     }
-    public Optional<Patient> findByUserId(Integer userId){
-        return patientRepo.findByUserId(userId);
-    }
+//    public Optional<Patient> findByUserId(Integer userId){
+//        return patientRepo.findByUserId(userId);
+//    }
     public Optional<List<Patient>> findByFullName(String fullName){
         return patientRepo.findByFullName(fullName);
     }
