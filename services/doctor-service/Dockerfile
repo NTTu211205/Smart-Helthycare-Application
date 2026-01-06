@@ -1,8 +1,12 @@
 # Build stage
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
-COPY pom.xml .
-COPY src ./src
+
+COPY services/doctor-service/pom.xml .
+COPY services/doctor-service/src ./src
+
+#COPY pom.xml .
+#COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Run stage
